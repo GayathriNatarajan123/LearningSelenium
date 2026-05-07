@@ -1,7 +1,8 @@
 
 public enum ScrollAction {
 
-	TOP("scrollTop = 0"), BOTTOM("scrollTop = scrollHeight");
+	TOP("scrollTop = 0"), 
+	BOTTOM("scrollTop = scrollHeight");
 
 	private final String jsCode;
 
