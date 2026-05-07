@@ -609,9 +609,12 @@ public class ChromeBrowser {
 		WebElement tb2 = driver.findElement(By.id("table02"));
 		Thread.sleep(4000);
 		CommonClass commonClass = new CommonClass();
-		commonClass.scrollTable(driver,tb2, ScrollAction.BOTTOM);
+		JavascriptExecutor js = (JavascriptExecutor) driver;	    
+	    js.executeScript("arguments[0].scrollTop = arguments[0].scrollHeight;", tb2);
+		//commonClass.scrollTable(driver,tb2, ScrollAction.BOTTOM);
 		Thread.sleep(4000);
-		commonClass.scrollTable(driver,tb2,ScrollAction.TOP);
+		js.executeScript("arguments[0].scrollTop = 0;", tb2);
+		//commonClass.scrollTable(driver,tb2,ScrollAction.TOP);
 		Thread.sleep(4000);
 		
 		driver.close();
