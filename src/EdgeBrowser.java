@@ -1,7 +1,14 @@
+import java.time.Duration;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EdgeBrowser {
 	
@@ -83,4 +90,42 @@ public class EdgeBrowser {
 			driver.close();
 		}
 	}
+	
+	void SelectMethod() throws InterruptedException {
+		WebDriver driver = new EdgeDriver();
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofMinutes(10));
+		driver.get("https://www.globalsqa.com/demo-site/select-dropdown-menu/");
+		try {
+			//driver.findElement(By.xpath("//p[text()='Manage options']")).click();
+		//	driver.findElement(By.xpath("(//p[text()='Confirm choices'])[1]")).click();
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fc-dialog-container")));
+		}
+		catch(Exception ex) {
+			System.out.println("Popup did not appear, continuing...");
+		}
+		//Thread.sleep(3000);
+		//driver.manage().timeouts().implicitlyWait(Duration.ofHours(2));
+		
+		WebElement ddCountry = driver.findElement(By.tagName("select"));
+		//WebElement ddCountry = wait.until(ExpectedConditions.elementToBeClickable(By.tagName("select")));
+		Select sddCountry = new Select(ddCountry);
+/**		
+		sddCountry.selectByContainsVisibleText("Angola");
+		Thread.sleep(1000);
+		sddCountry.selectByIndex(10);
+		Thread.sleep(1000);
+		sddCountry.selectByValue("ARG");
+		Thread.sleep(1000);
+		
+		//Get the size of the dropdown
+		List<WebElement> lstCountry = sddCountry.getOptions();
+		System.out.println(lstCountry.size());
+		
+		for(WebElement country : lstCountry) {
+			System.out.println(country.getText());
+		}
+	*/	
+	
+	}
+	
 }

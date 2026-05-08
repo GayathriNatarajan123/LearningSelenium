@@ -17,6 +17,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -595,6 +596,7 @@ public class ChromeBrowser {
 		
 		System.out.println("------Cell-------");
 		//WebElement tbcell = tb1.findElement(By.xpath("//table[@id='table01']//tbody//tr[2]//td[3]"));
+		//table[@id='table01']/tbody/tr[2]/td[3]---this also works
 		WebElement tbcell = tb1.findElement(By.xpath("((//table[@id='table01']//tbody//tr)[2]//td)[3]"));
 		String txtcell = tbcell.getText();
 		System.out.println(txtcell);
@@ -620,6 +622,92 @@ public class ChromeBrowser {
 		driver.close();
 	}
 	
+	void SelectMethod() throws InterruptedException {
+		//Open the window in incognito window
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--incognito");
+		
+		WebDriver driver = new ChromeDriver(options);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		driver.get("https://www.globalsqa.com/demo-site/select-dropdown-menu/");
+		//Added Thread.sleep(5000) to test the condition if popup did not appear.In the mean while, ill manually close the popup. 
+		//Thread.sleep(5000);
+		try {
+			driver.findElement(By.xpath("//p[text()='Manage options']")).click();
+			driver.findElement(By.xpath("(//p[text()='Confirm choices'])[1]")).click();
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fc-dialog-container")));
+			System.out.println("Popup handled successfully");
+		}
+		catch(Exception ex) {
+			System.out.println("Popup did not appear, continuing...");
+		}
+		//Thread.sleep(3000);
+		//driver.manage().timeouts().implicitlyWait(Duration.ofHours(2));
+		
+		WebElement ddCountry = driver.findElement(By.tagName("select"));
+		//WebElement ddCountry = wait.until(ExpectedConditions.elementToBeClickable(By.tagName("select")));
+		Select sddCountry = new Select(ddCountry);
+		
+		sddCountry.selectByContainsVisibleText("Angola");
+		Thread.sleep(1000);
+		sddCountry.selectByIndex(10);
+		Thread.sleep(1000);
+		sddCountry.selectByValue("ARG");
+		Thread.sleep(1000);
+		
+		//Get the size of the dropdown
+		List<WebElement> lstCountry = sddCountry.getOptions();
+		System.out.println(lstCountry.size());
+		
+		for(WebElement country : lstCountry) {
+			System.out.println(country.getText());
+		}
+		
+	
+	}
+	
+	void XpathSiblingMethod() {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://qavbox.github.io/demo/webtable/");
+		//following sibling
+		WebElement cellName = driver.findElement(By.xpath("//td[text()='Functional']/following-sibling::td"));
+		System.out.println(cellName.getText());
+		
+		//Preceding sibling-immedialty next and the first cell in the row
+		WebElement cellPreceding = driver.findElement(By.xpath("//td[text()='Functional']/preceding-sibling::td"));
+		cellPreceding.click();
+		
+		//following sibling:next to next sibling
+		WebElement cellPreceding1 = driver.findElement(By.xpath("//td[text()='Functional']/following-sibling::td[3]"));
+		cellPreceding1.click();
+		
+		WebElement cellPreceding3 = driver.findElement(By.xpath("//td[text()='GUI']/preceding-sibling::td"));
+		cellPreceding3.click();
+		
+		//ancestor and sibling used together.
+		WebElement cellPreceding2 = driver.findElement(By.xpath("//a[text()='Selenium']/ancestor::td/following-sibling::td[2]"));
+		cellPreceding2.click();
+
+		
+	}
+	
+	
+	void FacebookDropdown(){
+		WebDriver driver = new ChromeDriver();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		
+		driver.get("https://en-gb.facebook.com/reg/?entry_point=login&next=");	
+		
+		driver.findElement(By.xpath("(//span[text()='Decline optional cookies'])[1]")).click();
+		
+	    By yearDropdown = By.xpath("//span[text()='Year']/ancestor::div[@role='combobox']");	    
+	    wait.until(ExpectedConditions.elementToBeClickable(yearDropdown)).click();    
+	   
+		
+	    
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='2025']"))).click();	  
+	  
+	}
 	
 
 }

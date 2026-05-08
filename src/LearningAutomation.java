@@ -16,12 +16,16 @@ public class LearningAutomation {
 		//chromeBrowser.AlertMethod();
 		//chromeBrowser.xpathMethods();
 		//chromeBrowser.FramesMethod();
-		chromeBrowser.WebtableMethods();
+		//chromeBrowser.WebtableMethods();
+		//chromeBrowser.SelectMethod();
+		//chromeBrowser.XpathSiblingMethod();
+		chromeBrowser.FacebookDropdown();
 		
 		EdgeBrowser edgeBrowser = new EdgeBrowser();
 		//edgeBrowser.LaunchBrowser();
 		//edgeBrowser.NavigateMethod();
 		//edgeBrowser.xpathMethods();
+		//edgeBrowser.SelectMethod();
 		
 		
 		FirefoxBrowser firefoxBrowser = new FirefoxBrowser();
