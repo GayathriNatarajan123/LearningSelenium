@@ -19,7 +19,8 @@ public class LearningAutomation {
 		//chromeBrowser.WebtableMethods();
 		//chromeBrowser.SelectMethod();
 		//chromeBrowser.XpathSiblingMethod();
-		chromeBrowser.FacebookDropdown();
+		//chromeBrowser.FacebookDropdown();
+		chromeBrowser.WindowHandlingMethod();
 		
 		EdgeBrowser edgeBrowser = new EdgeBrowser();
 		//edgeBrowser.LaunchBrowser();

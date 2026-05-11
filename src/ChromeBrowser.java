@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
@@ -195,37 +196,35 @@ public class ChromeBrowser {
 		WebDriver driver = new ChromeDriver();
 		CommonClass commonClass = new CommonClass();
 
-		
-			driver.get("https://en-gb.facebook.com/");
-			Thread.sleep(2000);
-			driver.findElement(By.xpath("(//span[text()='Decline optional cookies'])[1]")).click();
-			//commonClass.ClosePopupFacebook(driver);
+		driver.get("https://en-gb.facebook.com/");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("(//span[text()='Decline optional cookies'])[1]")).click();
+		// commonClass.ClosePopupFacebook(driver);
 
-			WebElement userName = driver.findElement(By.xpath("//input[@name='email']"));
-			userName.sendKeys("Test");
+		WebElement userName = driver.findElement(By.xpath("//input[@name='email']"));
+		userName.sendKeys("Test");
 
-			WebElement password = driver.findElement(By.xpath("//input[contains(@type,'password')]"));
-			password.sendKeys("test");
-			Thread.sleep(2000);
-			
-			driver.get("https://en-gb.facebook.com/reg/?entry_point=login&next=");
-			Thread.sleep(2000);			
-			
-			//commonClass.ClosePopupFacebook(driver);
+		WebElement password = driver.findElement(By.xpath("//input[contains(@type,'password')]"));
+		password.sendKeys("test");
+		Thread.sleep(2000);
 
-			WebElement email = driver.findElement(By.xpath("(//input[@type='text'])[3]"));
-			email.sendKeys("abc@gmail.com");
+		driver.get("https://en-gb.facebook.com/reg/?entry_point=login&next=");
+		Thread.sleep(2000);
 
-			WebElement surName = driver.findElement(By.xpath("(//input[contains(@type,'text')])[2]"));
-			surName.sendKeys("selenium");
+		// commonClass.ClosePopupFacebook(driver);
 
-			WebElement name = driver.findElement(By.xpath("//span[text()='Get started on Facebook']"));
-			System.out.println(name.getText());
+		WebElement email = driver.findElement(By.xpath("(//input[@type='text'])[3]"));
+		email.sendKeys("abc@gmail.com");
 
-			WebElement name1 = driver.findElement(By.xpath("//span[contains(text(),'started ')]"));
-			System.out.println(name1.getText());
+		WebElement surName = driver.findElement(By.xpath("(//input[contains(@type,'text')])[2]"));
+		surName.sendKeys("selenium");
 
-		
+		WebElement name = driver.findElement(By.xpath("//span[text()='Get started on Facebook']"));
+		System.out.println(name.getText());
+
+		WebElement name1 = driver.findElement(By.xpath("//span[contains(text(),'started ')]"));
+		System.out.println(name1.getText());
+
 	}
 
 	/**
@@ -306,7 +305,7 @@ public class ChromeBrowser {
 	void JsMethods() {
 		WebDriver driver = new ChromeDriver();
 		try {
-			
+
 			driver.get("https://www.bigbasket.com/");
 			JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
 
@@ -314,51 +313,46 @@ public class ChromeBrowser {
 
 			javascriptExecutor.executeScript("window.scroll(0,3000)");
 			Thread.sleep(1000);
-			
+
 			javascriptExecutor.executeScript("window.scroll(0,-3000)");
 			Thread.sleep(1000);
-			
-			
+
 			// scroll till end of the page
 			javascriptExecutor.executeScript("window.scrollTo(0,document.body.scrollHeight)");
 			Thread.sleep(2000);
-			
+
 			javascriptExecutor.executeScript("window.scroll(0,0)");
 			Thread.sleep(3000);
-			
-			//locating the webelement
+
+			// locating the webelement
 			WebElement imgFruit = driver.findElement(By.xpath("(//img[@loading='lazy'])[21]"));
-			
-			javascriptExecutor.executeScript("arguments[0].scrollIntoView(true)",imgFruit);
+
+			javascriptExecutor.executeScript("arguments[0].scrollIntoView(true)", imgFruit);
 			Thread.sleep(4000);
-			
-			javascriptExecutor.executeScript("arguments[0].scrollIntoView(false)",imgFruit);
+
+			javascriptExecutor.executeScript("arguments[0].scrollIntoView(false)", imgFruit);
 			Thread.sleep(4000);
-			
-			
-			
-			javascriptExecutor.executeScript("arguments[0].click()",imgFruit);
-			Thread.sleep(5000);			
-			
-						
-			//refresh the current page
+
+			javascriptExecutor.executeScript("arguments[0].click()", imgFruit);
+			Thread.sleep(5000);
+
+			// refresh the current page
 			javascriptExecutor.executeScript("history.go(0)");
 			Thread.sleep(5000);
-			
-			//go back to previous page
+
+			// go back to previous page
 			javascriptExecutor.executeScript("history.back()");
 			Thread.sleep(5000);
-			
+
 			WebElement btnBanana = driver.findElement(By.xpath("(//img[@decoding='async'])[7]"));
 			btnBanana.click();
 			Thread.sleep(3000);
-			
+
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally {
-			driver.quit();		
+		} finally {
+			driver.quit();
 		}
 
 	}
@@ -495,23 +489,23 @@ public class ChromeBrowser {
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://leafground.com/alert.xhtml;jsessionid=node015fl45afvq0mw12reqsa6b4h9d15741348.node0");
 		Thread.sleep(2000);
-		//simple alert
+		// simple alert
 		driver.findElement(By.xpath("(//span[text()='Show'])[1]")).click();
-		
+
 		Alert popupsimple = driver.switchTo().alert();
 		Thread.sleep(2000);
 		popupsimple.accept();
 		Thread.sleep(2000);
-		
-		//confirm alert
+
+		// confirm alert
 		driver.findElement(By.xpath("(//span[text()='Show'])[2]")).click();
 		Thread.sleep(2000);
 		Alert popupConfirm = driver.switchTo().alert();
 		Thread.sleep(2000);
 		popupConfirm.dismiss();
 		Thread.sleep(2000);
-		
-		//Prompt alert
+
+		// Prompt alert
 		driver.findElement(By.xpath("//button[@id='j_idt88:j_idt104']")).click();
 		Thread.sleep(2000);
 		Alert popupPrompt = driver.switchTo().alert();
@@ -519,8 +513,8 @@ public class ChromeBrowser {
 		Thread.sleep(2000);
 		popupPrompt.accept();
 		Thread.sleep(2000);
-		
-		//Sweet alert
+
+		// Sweet alert
 		driver.findElement(By.xpath("(//span[text()='Show'])[6]")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-minus']")).click();
@@ -528,198 +522,327 @@ public class ChromeBrowser {
 		driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-plus']")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("(//span[@class='ui-icon ui-icon-closethick'])[3]")).click();
-		Thread.sleep(2000);		
-		
+		Thread.sleep(2000);
+
 	}
-	
+
 	void FramesMethod() throws InterruptedException {
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://leafground.com/frame.xhtml;jsessionid=node0l3up8rls7kwb1a3g6kbte3b2p15772771.node0");
-		
-		//switch to frame 0 to click the button
+
+		// switch to frame 0 to click the button
 		driver.switchTo().frame(0);
-		Thread.sleep(2000);		
+		Thread.sleep(2000);
 		driver.findElement(By.id("Click")).click();
-		Thread.sleep(2000);		
-		
-		//switch back out of the frame
+		Thread.sleep(2000);
+
+		// switch back out of the frame
 		driver.switchTo().defaultContent();
-		
-		//switch to frame 1 to get the text
+
+		// switch to frame 1 to get the text
 		driver.switchTo().frame(1);
-		
+
 		System.out.println(driver.findElement(By.id("Click")).getText());
-		Thread.sleep(2000);	
-		
-		//switch back out of the frame
+		Thread.sleep(2000);
+
+		// switch back out of the frame
 		driver.switchTo().defaultContent();
-		
-		//switch to frame 2 to click the button
+
+		// switch to frame 2 to click the button
 		driver.switchTo().frame(2);
 		driver.switchTo().frame(0);
 		driver.findElement(By.id("Click")).click();
-		
+
 		driver.switchTo().parentFrame();
 		List<WebElement> lstframe2 = driver.findElements(By.tagName("iframe"));
 		int s2 = lstframe2.size();
 		System.out.println(s2);
-		
+
 		driver.switchTo().parentFrame();
 		List<WebElement> lstform = driver.findElements(By.tagName("iframe"));
 		System.out.println(lstform.size());
-		
-		
+
 	}
-	
+
 	void WebtableMethods() throws InterruptedException {
 
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://qavbox.github.io/demo/webtable/");
-		
+
 		WebElement tb1 = driver.findElement(By.id("table01"));
-		
+
 		System.out.println("------Header-------");
 		WebElement tbHeader = tb1.findElement(By.tagName("thead"));
 		String txtHeader = tbHeader.getText();
 		System.out.println(txtHeader);
-		
+
 		System.out.println("------Body-------");
-		//WebElement tbBody = tb1.findElement(By.tagName("tbody")); or below code --both code works
+		// WebElement tbBody = tb1.findElement(By.tagName("tbody")); or below code
+		// --both code works
 		WebElement tbBody = driver.findElement(By.tagName("tbody"));
 		String txtBody = tbBody.getText();
 		System.out.println(txtBody);
-		
+
 		System.out.println("------Row-------");
 		WebElement tbrow = driver.findElement(By.xpath("//table[@id='table01']//tbody//tr[3]"));
 		String txtrow = tbrow.getText();
 		System.out.println(txtrow);
-		
+
 		System.out.println("------Cell-------");
-		//WebElement tbcell = tb1.findElement(By.xpath("//table[@id='table01']//tbody//tr[2]//td[3]"));
-		//table[@id='table01']/tbody/tr[2]/td[3]---this also works
+		// WebElement tbcell =
+		// tb1.findElement(By.xpath("//table[@id='table01']//tbody//tr[2]//td[3]"));
+		// table[@id='table01']/tbody/tr[2]/td[3]---this also works
 		WebElement tbcell = tb1.findElement(By.xpath("((//table[@id='table01']//tbody//tr)[2]//td)[3]"));
 		String txtcell = tbcell.getText();
 		System.out.println(txtcell);
 		Thread.sleep(2000);
-		
+
 		tb1.findElement(By.xpath("//table[@id='table01']//tbody//tr[1]//td[1]")).click();
 		Thread.sleep(2000);
 		tb1.findElement(By.xpath("//table[@id='table01']//tbody//tr[1]//td[5]")).click();
 		Thread.sleep(2000);
-		
-		//scroll the webtable
+
+		// scroll the webtable
 		WebElement tb2 = driver.findElement(By.id("table02"));
 		Thread.sleep(4000);
 		CommonClass commonClass = new CommonClass();
-		JavascriptExecutor js = (JavascriptExecutor) driver;	    
-	    js.executeScript("arguments[0].scrollTop = arguments[0].scrollHeight;", tb2);
-		//commonClass.scrollTable(driver,tb2, ScrollAction.BOTTOM);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollTop = arguments[0].scrollHeight;", tb2);
+		// commonClass.scrollTable(driver,tb2, ScrollAction.BOTTOM);
 		Thread.sleep(4000);
 		js.executeScript("arguments[0].scrollTop = 0;", tb2);
-		//commonClass.scrollTable(driver,tb2,ScrollAction.TOP);
+		// commonClass.scrollTable(driver,tb2,ScrollAction.TOP);
 		Thread.sleep(4000);
-		
+
 		driver.close();
 	}
-	
-	void SelectMethod() throws InterruptedException {
-		//Open the window in incognito window
+
+	void SelectAndWaitMethod() throws InterruptedException {
+		// Open the window in incognito window
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--incognito");
-		
+
 		WebDriver driver = new ChromeDriver(options);
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
 		driver.get("https://www.globalsqa.com/demo-site/select-dropdown-menu/");
-		//Added Thread.sleep(5000) to test the condition if popup did not appear.In the mean while, ill manually close the popup. 
-		//Thread.sleep(5000);
+		// Added Thread.sleep(5000) to test the condition if popup did not appear.In the
+		// mean while, ill manually close the popup.
+		// Thread.sleep(5000);
 		try {
 			driver.findElement(By.xpath("//p[text()='Manage options']")).click();
 			driver.findElement(By.xpath("(//p[text()='Confirm choices'])[1]")).click();
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fc-dialog-container")));
 			System.out.println("Popup handled successfully");
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
 			System.out.println("Popup did not appear, continuing...");
 		}
-		//Thread.sleep(3000);
-		//driver.manage().timeouts().implicitlyWait(Duration.ofHours(2));
-		
+		// Thread.sleep(3000);
+		// driver.manage().timeouts().implicitlyWait(Duration.ofHours(2));
+
 		WebElement ddCountry = driver.findElement(By.tagName("select"));
-		//WebElement ddCountry = wait.until(ExpectedConditions.elementToBeClickable(By.tagName("select")));
+		// WebElement ddCountry =
+		// wait.until(ExpectedConditions.elementToBeClickable(By.tagName("select")));
 		Select sddCountry = new Select(ddCountry);
-		
+
 		sddCountry.selectByContainsVisibleText("Angola");
 		Thread.sleep(1000);
 		sddCountry.selectByIndex(10);
 		Thread.sleep(1000);
 		sddCountry.selectByValue("ARG");
 		Thread.sleep(1000);
-		
-		//Get the size of the dropdown
+
+		// Get the size of the dropdown
 		List<WebElement> lstCountry = sddCountry.getOptions();
 		System.out.println(lstCountry.size());
-		
-		for(WebElement country : lstCountry) {
+
+		for (WebElement country : lstCountry) {
 			System.out.println(country.getText());
 		}
-		
-	
+
 	}
-	
+
 	void XpathSiblingMethod() {
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://qavbox.github.io/demo/webtable/");
-		//following sibling
+		// following sibling
 		WebElement cellName = driver.findElement(By.xpath("//td[text()='Functional']/following-sibling::td"));
 		System.out.println(cellName.getText());
-		
-		//Preceding sibling-immedialty next and the first cell in the row
+
+		// Preceding sibling-immedialty next and the first cell in the row
 		WebElement cellPreceding = driver.findElement(By.xpath("//td[text()='Functional']/preceding-sibling::td"));
 		cellPreceding.click();
-		
-		//following sibling:next to next sibling
+
+		// following sibling:next to next sibling
 		WebElement cellPreceding1 = driver.findElement(By.xpath("//td[text()='Functional']/following-sibling::td[3]"));
 		cellPreceding1.click();
-		
+
 		WebElement cellPreceding3 = driver.findElement(By.xpath("//td[text()='GUI']/preceding-sibling::td"));
 		cellPreceding3.click();
-		
-		//ancestor and sibling used together.
-		WebElement cellPreceding2 = driver.findElement(By.xpath("//a[text()='Selenium']/ancestor::td/following-sibling::td[2]"));
+
+		// ancestor and sibling used together.
+		WebElement cellPreceding2 = driver
+				.findElement(By.xpath("//a[text()='Selenium']/ancestor::td/following-sibling::td[2]"));
 		cellPreceding2.click();
 
-		
 	}
-	
-	
-	void FacebookDropdown(){
+
+	void CognitoTab() {
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--incognito");
+
+		WebDriver driver = new ChromeDriver(options);
+		driver.get("https://www.amazon.co.uk/ref=nav_logo");
+
+	}
+
+	void FacebookDropdown() {
 		WebDriver driver = new ChromeDriver();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		
-		driver.get("https://en-gb.facebook.com/reg/?entry_point=login&next=");	
-		
+
+		driver.get("https://en-gb.facebook.com/reg/?entry_point=login&next=");
+
 		driver.findElement(By.xpath("(//span[text()='Decline optional cookies'])[1]")).click();
-		
-	    By yearDropdown = By.xpath("//span[text()='Year']/ancestor::div[@role='combobox']");	    
-	    
-	    wait.until(ExpectedConditions.elementToBeClickable(yearDropdown)).click();   		
-	    
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='2025']"))).click();	
-	    
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Day']/ancestor::div[@role='combobox']"))).click();   
-	    
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='2']"))).click();
-	    
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Month']/ancestor::div[2]"))).click();
-	    
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='March']"))).click();
-	    
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Select your gender']/ancestor::div[2]"))).click();
-	    
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='Custom']"))).click();
-	   
-	  
+
+		By yearDropdown = By.xpath("//span[text()='Year']/ancestor::div[@role='combobox']");
+
+		wait.until(ExpectedConditions.elementToBeClickable(yearDropdown)).click();
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='2025']"))).click();
+
+		wait.until(ExpectedConditions
+				.elementToBeClickable(By.xpath("//span[text()='Day']/ancestor::div[@role='combobox']"))).click();
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='2']"))).click();
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Month']/ancestor::div[2]")))
+				.click();
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='March']"))).click();
+
+		wait.until(ExpectedConditions
+				.elementToBeClickable(By.xpath("//span[text()='Select your gender']/ancestor::div[2]"))).click();
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='Custom']"))).click();
+
 	}
+
+	void WindowHandlingMethod() throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+		JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+
+		driver.get("https://www.amazon.co.uk/ref=nav_logo");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().window().maximize();
+
+		try {
+			WebElement btnDeclain = wait
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Decline']")));
+			btnDeclain.click();
+			System.out.println("Popup handled successfully");
+		} catch (Exception ex) {
+			System.out.println("Popup did not appear, continuing...");
+		}
+		Thread.sleep(2000);
+		
+		//get the home window id
+		 String windowId = driver.getWindowHandle();
+		 System.out.println("Parent window id:" + windowId);
+		 
+		
+		  // identify/locate the web element 
+		 WebElement btnLaptop = wait
+		  .until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+		  "(//a[contains(.,'Laptops')])[1]")));
+		  
+		  // scroll to the element 
+		 javascriptExecutor.
+		  executeScript("arguments[0].scrollIntoView({block: 'center'});", btnLaptop);
+		  // to debug if it is scrolling
+		 Thread.sleep(2000);
+		  
+		  // click the element
+		  wait.until(ExpectedConditions.elementToBeClickable(btnLaptop)).click();
+		  
+		
+		//get the window id
+		  System.out.println("All window id:"); 
+		  Set<String> windowsId = driver.getWindowHandles();
+		  
+		  String LaptopWindowId = "";
+		  System.out.println("------------------------------"); 
+		  for (String s :  windowsId) { 
+			  System.out.println(s); 
+			  if (!s.equals(windowId)) {
+				  	System.out.println("New window id: " + s); 
+				  	LaptopWindowId = s;
+				  	driver.switchTo().window(s); }
+			  }
+		  System.out.println("------------------------------");
+		  
+		  Thread.sleep(2000);
+		  WebElement btnLaptop1 = driver.findElement(By.xpath("(//span[contains(.,'fc0045sa')])[3]"));
+		  btnLaptop1.click();
+		  
+		  // Here span is not clickable element so use sibling concept 
+		  WebElement btnLaptop2 = wait.until(ExpectedConditions.presenceOfElementLocated(
+		  By.xpath("(//span[contains(. ,'Add to basket')])[5]/preceding-sibling::input"
+		  ))); 
+		  
+		  javascriptExecutor.executeScript("arguments[0].scrollIntoView({block: 'center'});", btnLaptop2);
+		  Thread.sleep(2000);
+		  
+		 // wait.until(ExpectedConditions.elementToBeClickable(btnLaptop2)).click(); //
+		  //we can also use javascript executor to click the button. //
+		  javascriptExecutor.executeScript("arguments[0].click();", btnLaptop2);
+		 
+		// Switching to home window
+		
+		 driver.switchTo().window(windowId);
+		 
+		WebElement btnTab = wait.until(
+				ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(. ,'Tablets')]/ancestor::a")));
+		javascriptExecutor.executeScript("arguments[0].scrollIntoView({block: 'center'});", btnTab);
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(btnTab)).click();
+
+		
+		
+		//get the window id
+		Set<String> windowsId1 = driver.getWindowHandles();
+		
+		String tabWindowId = "";
+		System.out.println("All window id:");
+		System.out.println("------------------------------");
+		for (String s : windowsId1) {
+			System.out.println(s);
+			if (!s.equals(windowId) && !s.equals(LaptopWindowId)) {
+				System.out.println("2nd New window id: " + s);
+				tabWindowId = s;
+				driver.switchTo().window(s);
+			}
+		}
+		System.out.println("------------------------------");
+		
+		Thread.sleep(2000);
+		WebElement btnTab1 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+				"(//span[contains(., \"Samsung Galaxy Tab A11\")])[3]/ancestor::a")));
+		javascriptExecutor.executeScript("arguments[0].scrollIntoView({block: 'center'});", btnTab1);
+		Thread.sleep(2000);
+		javascriptExecutor.executeScript("arguments[0].click();", btnTab1);
+		
+		
+		
+		WebElement btnTabAdd = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//span[contains(., 'Add to basket')])[5]/preceding-sibling::input")));	
+		Thread.sleep(2000);
+		javascriptExecutor.executeScript("arguments[0].click()", btnTabAdd);
+		
+		WebElement btnTabBasket = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//a[contains(.,' Go to basket')])[2]")));
+		Thread.sleep(2000);
+		javascriptExecutor.executeScript("arguments[0].click()", btnTabBasket);
 	
+
+	}
 
 }
