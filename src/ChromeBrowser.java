@@ -701,11 +701,23 @@ public class ChromeBrowser {
 		driver.findElement(By.xpath("(//span[text()='Decline optional cookies'])[1]")).click();
 		
 	    By yearDropdown = By.xpath("//span[text()='Year']/ancestor::div[@role='combobox']");	    
-	    wait.until(ExpectedConditions.elementToBeClickable(yearDropdown)).click();    
-	   
-		
 	    
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='2025']"))).click();	  
+	    wait.until(ExpectedConditions.elementToBeClickable(yearDropdown)).click();   		
+	    
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='2025']"))).click();	
+	    
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Day']/ancestor::div[@role='combobox']"))).click();   
+	    
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='2']"))).click();
+	    
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Month']/ancestor::div[2]"))).click();
+	    
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='March']"))).click();
+	    
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Select your gender']/ancestor::div[2]"))).click();
+	    
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='Custom']"))).click();
+	   
 	  
 	}
 	
